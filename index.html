@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="toDo.css">
+    <title>TODO APP</title>
+</head>
+<body>
+    <h2 id="app-title">TO-DO APP</h2>
+    <form action="" onsubmit="window.event.preventDefault()">
+        <div class="input-div">
+            <input type="text" placeholder="Write something..." id="list-input" autocomplete="off">
+            <span class="error-message"></span>
+
+            <button id="add-button">Add</button>
+        </div>
+
+        <ul id="list" ></ul>
+    </form>
+    <script src="toDo.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+:root {
+    --main: linear-gradient(45deg, rgb(110, 236, 213), rgb(242, 109, 131));
+    --white: white;
+    --border-color: rgb(83, 76, 76);
+}
+html{
+    font-size: 16pt;
+    font-family:'poppins','verdana', sans-serif;
+    color: var(--white);
+    background: black;
+
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50dvh;
+    padding: 20px;
+    transition: all .4s ease-in;
+}
+#app-title {
+    background-image: var(--main);
+    background-clip: text;
+    color: transparent;
+    margin: 20px 0;
+    font-size: 2rem;
+}
+form {
+    /* width: 100% ; */
+    width: 700px;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 20px;
+}
+@media only screen and (max-width: 703px){
+    form{
+        width: 500px;
+    }
+}
+@media only screen and (max-width: 511px){
+    form{
+        width: 100%;
+    }
+}
+.input-div {
+    position: relative;
+    width: 100%;
+}
+input {
+    width: 100%;
+    padding: 15px 7.5em 15px 15px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background-color: rgb(203, 203, 203);
+}
+#add-button {
+    position: absolute;
+    top: 0.5px;
+    right: 0;
+    padding: 10px 30px;
+    border-radius: 20px;
+    border: none;
+    font-size: 16pt;
+    color: var(--white);
+    background: var(--main);
+}
+ul {
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+li {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    /* justify-content: space-between; */
+    background-color: rgb(48, 48, 48);
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px 0;
+}
+.custom-check {
+    display: none;
+}
+label {
+    display: flex;
+    /* margin-right: auto; */
+    gap: 15px;
+}
+.label svg {
+    border: 1px solid var(--white);
+    border-radius: 50%;
+    align-self: center;
+}
+.list-text {
+    display: flex;
+}
+input[type="checkbox"]:checked~.label svg {
+    fill: white;
+    background-color: green;
+}
+input[type="checkbox"]:checked~label .list-text {
+    text-decoration: line-through;
+    filter: brightness(70%);;
+}
+.error-message{
+    color: red;
+    margin-left: 20px;
+    font-size: 16px;
+    font-style: italic;
+}
+.delete-button {
+    background: none;
+    border: none;
+    margin-left: auto;
+}
