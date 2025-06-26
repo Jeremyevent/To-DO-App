@@ -6,14 +6,18 @@
 }
 :root {
     --main: linear-gradient(45deg, rgb(110, 236, 213), rgb(242, 109, 131));
-    --white: white;
     --border-color: rgb(83, 76, 76);
+    --white: white;
+    --black: black;
+    --valid: green;
+    --invalid: red;
+    --secondary: rgb(48, 48, 48);
 }
 html{
     font-size: 16pt;
     font-family:'poppins','verdana', sans-serif;
     color: var(--white);
-    background: black;
+    background: var(--black);
 
 }
 body {
@@ -22,8 +26,75 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 50dvh;
+    width: 100%;
     padding: 20px;
     transition: all .4s ease-in;
+}
+header{
+    width:100%;
+    background-image: var(--main);
+    background-clip: text;
+    color: transparent;
+    background-size: 400% 100%;
+    margin-bottom: 20px;
+    background-color: black;
+    z-index: 2;
+    border-bottom: 1px solid var(--border-color);
+    animation: moveBg 2s linear infinite;
+}
+@keyframes moveBg {
+    from{
+        background-position: 0%;
+    }
+    to{
+        background-position: -100%;
+    }
+}
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+nav div {
+    display: flex;
+    gap: 30px;
+}
+a {
+    text-decoration: none;
+    color: transparent;
+}
+div a#home{
+    margin-right: auto;
+    flex-shrink: 4;
+}
+header img{
+    width: clamp(2rem,4vw,3rem);
+    clip-path: circle(50%);
+}
+header a:hover{
+    border-bottom: 2px solid var(--white);
+    cursor: pointer;
+    animation: width 0.5s linear;
+    transition: width .7s ease;
+}
+@keyframes width {
+    from{
+        width: 0%;
+    }
+    to{width:100%;}
+}
+img[src="imgs/notif-active.svg"]{
+    animation: shake .4s  alternate-reverse infinite;
+}
+@keyframes shake {
+    10%,20%,30%,90%,100%{transform: rotate(10deg);}
+    40%,50%,60%,70%,80%{transform: rotate(0deg)}
+    25%,50%,75%,100%{transform: rotate(-10deg)}
+}
+img[src="imgs/github.png"]{
+    animation: bounce 0.6s  alternate-reverse infinite;
+}
+@keyframes bounce {
+    to{transform: scale(0.7);}
 }
 #app-title {
     background-image: var(--main);
@@ -31,23 +102,69 @@ body {
     color: transparent;
     margin: 20px 0;
     font-size: 2rem;
+    width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid var(--white);
+    animation: 
+        blinking-cursor 0.7s linear infinite,
+        done 0.3s linear 4s forwards,
+        typing 1.5s steps(9,end) forwards;
 }
+@keyframes blinking-cursor {
+    50%{border-right-color: transparent;}
+}
+@keyframes typing {
+    to{width: 9ch}
+}
+@keyframes done {
+    100%{border: none;}
+}
+/* aside{
+    background-color: var(--secondary);
+    position: fixed;
+    top: 79px;
+    left: 0;
+    width: 200px;
+    display: none;
+    min-height: 100vh;
+    z-index: 1;
+    border-radius: 15px;
+} */
 form {
     /* width: 100% ; */
     width: 700px;
     border: 1px solid var(--border-color);
     border-radius: 15px;
     padding: 20px;
+    transform: scale(0);
+    animation: scale 0.6s ease-in 1.5s forwards;
 }
-@media only screen and (max-width: 703px){
+@keyframes scale {
+    to{transform: scale(1)}
+}
+@media only screen and (min-width: 903px){
     form{
-        width: 500px;
+        width: 800px;
+    }
+    aside{
+        width: 70px;
+        left: 20px;
+        display: block;
     }
 }
-@media only screen and (max-width: 511px){
+@media only screen and (max-width: 600px){
     form{
         width: 100%;
     }
+}
+@media only screen and (min-width: 600px) and (max-width: 899px){
+    form{
+        width: 600px;
+    }
+}
+@media only screen and (max-width: 400px){
+    #app-title{font-size: 1.5rem}
 }
 .input-div {
     position: relative;
@@ -72,22 +189,23 @@ input {
     color: var(--white);
     background: var(--main);
 }
-ul {
+ul#list {
     border: 1px solid var(--border-color);
     border-radius: 20px;
-    margin-top: 20px;
     padding: 10px;
     max-height: 300px;
+    margin-top: 30px;
     overflow-y: scroll;
-    scrollbar-width: none;
+    scrollbar-width:thin;
     scroll-behavior: smooth;
+    scroll-snap-align: center;
 }
-li {
+li.list-item {
     display: flex;
     align-items: center;
     width: 100%;
     /* justify-content: space-between; */
-    background-color: rgb(48, 48, 48);
+    background-color: var(--secondary);
     border-radius: 10px;
     padding: 5px;
     margin: 10px 0;
@@ -104,26 +222,52 @@ label {
     border: 1px solid var(--white);
     border-radius: 50%;
     align-self: center;
+    flex-shrink: 0;
 }
 .list-text {
     display: flex;
 }
 input[type="checkbox"]:checked~.label svg {
-    fill: white;
-    background-color: green;
+    fill: var(--white);
+    background-color: var(--valid);
 }
 input[type="checkbox"]:checked~label .list-text {
     text-decoration: line-through;
-    filter: brightness(70%);;
+    filter: brightness(60%);;
 }
 .error-message{
-    color: red;
+    color: var(--invalid);
     margin-left: 20px;
     font-size: 16px;
     font-style: italic;
+    white-space: nowrap;
 }
 .delete-button {
     background: none;
     border: none;
     margin-left: auto;
+}
+#genBtn-box{
+    position: relative;
+    margin-top: 10px;
+}
+#caution {
+    position: absolute;
+    right:5.4em;
+    bottom: -18px;
+    opacity: 1;
+    animation: warning 1s linear infinite;
+}
+@keyframes warning {
+    50%{opacity: 0.3}
+}
+#general-delete{
+    position: absolute;
+    display: flex;
+    right: 10px;
+    bottom: -20px;
+    color: var(--invalid);
+    border: 1px solid var(--border-color);
+    animation: warning 1s linear infinite;
+    border-bottom: none;
 }
