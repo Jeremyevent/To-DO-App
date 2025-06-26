@@ -7,17 +7,44 @@
     <title>TODO APP</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <div>
+                <a href="#" id="home">Roadmap</a>
+            </div>
+
+            <div>
+                <div>
+                    <a href="#"><img src="imgs/notif-active.svg" alt="notification icon" title="notification" ></a>
+                </div>
+                <div>
+                    <a href="#"><img src="imgs/github.png" alt="github icon" title="github" style="background-color: white;"></a>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+    <!-- <aside></aside> -->
     <h2 id="app-title">TO-DO APP</h2>
-    <form action="" onsubmit="window.event.preventDefault()">
+    <form action="">
         <div class="input-div">
             <input type="text" placeholder="Write something..." id="list-input" autocomplete="off">
             <span class="error-message"></span>
 
-            <button id="add-button">Add</button>
+            <button type="submit" id="add-button">Add</button>
         </div>
-
+        <div id="genBtn-box">
+            <svg id="caution" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="yellow"><path d="m40-120 440-760 440 760H40Zm138-80h604L480-720 178-200Zm302-40q17 0 28.5-11.5T520-280q0-17-11.5-28.5T480-320q-17 0-28.5 11.5T440-280q0 17 11.5 28.5T480-240Zm-40-120h80v-200h-80v200Zm40-100Z"/></svg>
+            <button type="button" class="delete-button" id="general-delete" title="Delete All"><p>Danger zone:</p>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="red"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                </div>
+            </button>
+        </div>
         <ul id="list" ></ul>
+        
     </form>
-    <script src="toDo.js" defer></script>
+    <!-- <script src="toDo.js" defer></script> -->
+    <script src="toDo-v2.js" defer></script>
 </body>
 </html>
